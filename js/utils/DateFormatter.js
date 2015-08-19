@@ -1,4 +1,4 @@
-var DateFormatter = {
+var DateFormatter = { 
 	settings : {
 		useResourceFile : false,
 		resourceBundle : "",
