@@ -1,0 +1,57 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+		controllerName="application.detail.AddExpenseItem" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page
+		class="sapUiFioriObjectPage"
+		title="{employeeModel>/ExpenseYear} / {employeeModel>/ExpenseMonth}">
+		<l:Grid
+			defaultSpan="L12 M12 S12"
+			width="auto">
+			<l:content>
+				<f:SimpleForm
+					id="idAddExpenseItemForm"
+					minWidth="800"
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="4"
+					emptySpanM="4"
+					columnsL="1"
+					columnsM="1"
+					class="editableForm">
+					<f:content>
+						<!-- Basic info -->
+						<core:Title text="Status : New" />
+						<Label text="Client" />
+						<Input value="{newExpenseItem>/Detail/Client}" />
+						<Label text="Type" />
+ 						<Select
+							id="idSelectSupplier"
+							items="{expTypesModel>/results}"
+							width="100%">
+							<core:Item text="{expTypesModel>Description}" />
+						</Select>
+						<Label text="Amount" />
+						<Input value="{newExpenseItem>/Detail/Amount}" />
+						
+						<Label text="Location" />
+						<Input value="{newExpenseItem>/Detail/Location}" />
+						
+						<Label text="Date" />
+						<DateTimeInput
+							type="Date"
+							value="{newExpenseItem>/Detail/Date}" />
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Save" type="Emphasized" press="onSave" />
+				<Button text="Cancel" press="onCancel" />
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

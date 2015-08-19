@@ -1,0 +1,98 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		controllerName="application.detail.detail" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page
+		showNavButton="false"
+		navButtonPress="onNavBack"
+		class="sapUiFioriObjectPage"
+		title="{expenseModel>/ExpenseYear} / {expenseModel>/ExpenseMonth}">
+		<content>
+			<ObjectHeader
+				title="{
+				    path : 'expenseModel>/EmployeeNumber',
+				    formatter: 'Formatter.removeInitialZeros'
+				    }"
+				number="{
+					path: 'expenseModel>/TotalAmount',
+					formatter: 'Formatter.currencyValue'
+				}"
+				numberUnit="USD">
+			</ObjectHeader>
+ 			<IconTabBar
+				select="onDetailSelect"
+				expandable="false"
+				id="idIconTabBar"
+				class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter
+						key="expenseItems"
+						text="Expense Items"
+						icon="sap-icon://supplier">
+						<content>
+						    <Table id="idProductsTable"
+						           inset="false" 
+						           items = "{/results}">
+						        <headerToolbar>
+                                     <Toolbar>
+                                         <Title text="Products" level="H3"/>
+                                    </Toolbar>
+                                 </headerToolbar>
+                                 <columns>
+                                  <Column width="12em">
+                                    <Text text="Type" />
+                                  </Column>
+                                  <Column  minScreenWidth="Tablet" demandPopin="true">
+                                    <Text text="Description" />
+                                  </Column>
+                                  <Column   minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
+                                    <Text text="Location" />
+                                  </Column>
+                                  <Column  minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="Amount" />
+                                  </Column>
+                                 
+                                </columns>
+                                <items>
+                                  <ColumnListItem>
+                                    <cells>
+                                        <Text text="{ExpenseType}" />
+                                        <Text text="{Description}" />
+                                        <Text text="{Location}" />
+                                        <Text text="{Amount}" />
+                                    </cells>
+                                  </ColumnListItem>
+                                </items>
+                            </Table>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter
+						key="category"
+						text="Approval"
+						icon="sap-icon://hint">
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Bar>
+			    <contentRight>
+			    <Button xmlns="sap.m"
+			    	text=""
+			    	icon="sap-icon://add"
+			    	tap="onAddExpenseItem"
+			    	press="">
+			    		<tooltip></tooltip>
+			    		<dependents></dependents>
+			    </Button>
+			    <Button xmlns="sap.m"
+			    	text="Submit"
+			    	tap="onSubmitExpenseRequest"
+			    	press="">
+			    		<tooltip></tooltip>
+			    		<dependents></dependents>
+			    </Button>
+			    </contentRight>
+			    
+			</Bar>
+		</footer>
+	</Page>
+</core:View>
